@@ -76,14 +76,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     {
         timer?.invalidate()
     }
+    func formatDateDisplay(d: DateComponents)
+    {
+        //Implement change to normalize the zeros and leading numbers in the displayed countdown
+//        ((d.year as! String).characters.count == 1) ? " ": ""
+    }
     @objc func Counting()
     {
         //Approach #2 to calculating the difference in time
-        var calendar = Calendar.current
-        var times = calendar.dateComponents([.year,.month,.day,.hour,.minute,.second], from:birth, to:Date())
- 
+        let calendar = Calendar.current
+        
+        var times =  calendar.dateComponents([.year,.month,.day,.hour,.minute,.second], from:birth, to:Date())
+        
         if(UserDefaults.standard.bool(forKey:"Labeling"))
         {
+            
             statusItem.button?.title = "\(times.year!)y:\(times.month!)m:\(times.day!)d:\(times.hour!)h:\(times.minute!)m:\(times.second!)s"
             statusItem.length = 190
         }
